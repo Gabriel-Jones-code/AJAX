@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body>
+        <h2>AJAX request state</h2>
+        <div id='content1'>
+        <input type='button' value='request content' id='button' onclick='request()'>
+        </div>
+    </body>
+    <script type="text/javascript">
+        //Ajax setup
+        var ajax = new XMLHttpRequest();        //talks to server and allows data to
+                                                //load without refreshing the page
+        //starting ajax request
+        ajax.open('GET', 'request.html');   //get/post, content being requested
+
+        //defining ajax response
+        ajax.onreadystatechange = function() {  //starts when readystate changes
+            if(ajax.readyState == 4) {          //if ajax request and response is finished
+                document.getElementById('content1').innerHTML = ajax.responseText;
+            }
+        }
+
+        //send data
+        function request() {
+            ajax.send();
+            document.getElementById('button').style.display = 'none';
+        }
+    </script>
+</html>
